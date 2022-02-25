@@ -5,6 +5,7 @@ class NewTransaction extends StatefulWidget {
 
   // final Function voidCallbackUse;
 
+  // ignore: use_key_in_widget_constructors, prefer_const_constructors_in_immutables
   NewTransaction({required this.addNewTransaction});
 
   @override
@@ -43,7 +44,7 @@ class _NewTransactionState extends State<NewTransaction> {
                 onPressed: submitData,
                 child: const Text(
                   'Add Transaction',
-                  style: TextStyle(color: Colors.purple),
+                  style: TextStyle(color: Colors.teal),
                 )),
             // TextButton(
             //     onPressed: () {
