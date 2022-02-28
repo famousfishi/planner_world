@@ -29,10 +29,18 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final List<Transaction> _transactions = [
-    Transaction(
-        id: 't1', amount: 30.00, date: DateTime.now(), title: 'New Mac Book'),
-    Transaction(
-        id: 't2', amount: 50.00, date: DateTime.now(), title: 'New iPhone'),
+    // Transaction(
+    //     id: 't1', amount: 30.00, date: DateTime.now(), title: 'New Mac Book'),
+    // Transaction(
+    //     id: 't2', amount: 50.00, date: DateTime.now(), title: 'New iPhone'),
+    // Transaction(
+    //     id: 't3', amount: 30.00, date: DateTime.now(), title: 'Groceries'),
+    // Transaction(
+    //     id: 't4', amount: 50.00, date: DateTime.now(), title: 'New Shoes'),
+    // Transaction(
+    //     id: 't5', amount: 30.00, date: DateTime.now(), title: 'New PS5'),
+    // Transaction(
+    //     id: 't6', amount: 50.00, date: DateTime.now(), title: 'New iPad'),
   ];
 
   List<Transaction> get _recentTransactions {
@@ -55,16 +63,17 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final appBar = AppBar(
+      backgroundColor: Theme.of(context).primaryColor,
+      title: const Text('Personal Expenses'),
+      actions: [
+        IconButton(
+            onPressed: () => _startModalBottomSheet(context),
+            icon: const Icon(Icons.add))
+      ],
+    );
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).primaryColor,
-        title: const Text('Personal Expenses'),
-        actions: [
-          IconButton(
-              onPressed: () => _startModalBottomSheet(context),
-              icon: const Icon(Icons.add))
-        ],
-      ),
+      appBar: appBar,
       body: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -75,9 +84,19 @@ class _HomePageState extends State<HomePage> {
             SizedBox(
               width: double.infinity,
               // ignore: prefer_const_constructors
-              child: Chart(_recentTransactions),
+              child: SizedBox(
+                  height: (MediaQuery.of(context).size.height -
+                          appBar.preferredSize.height -
+                          MediaQuery.of(context).padding.top) *
+                      0.4,
+                  child: Chart(_recentTransactions)),
             ),
-            TransactionList(transactionList: _transactions)
+            SizedBox(
+                height: (MediaQuery.of(context).size.height -
+                        appBar.preferredSize.height -
+                        MediaQuery.of(context).padding.top) *
+                    0.6,
+                child: TransactionList(transactionList: _transactions))
           ],
         ),
       ),
