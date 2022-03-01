@@ -39,14 +39,19 @@ class TransactionList extends StatelessWidget {
                               color: Theme.of(context).primaryColor,
                               width: 2.0)),
                       padding: const EdgeInsets.all(10.0),
-                      child: Text(
-                        '\$${transactionList[index].amount.toStringAsFixed(2)}',
-                        style: const TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20,
-                          // color: Colors.purple
-                        ),
-                      ),
+                      child: MediaQuery.of(context).size.width < 360
+                          ? const Text(
+                              'Hi fishi',
+                              style: TextStyle(color: Colors.amber),
+                            )
+                          : Text(
+                              '\$${transactionList[index].amount.toStringAsFixed(2)}',
+                              style: const TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 20,
+                                // color: Colors.purple
+                              ),
+                            ),
                     ),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
